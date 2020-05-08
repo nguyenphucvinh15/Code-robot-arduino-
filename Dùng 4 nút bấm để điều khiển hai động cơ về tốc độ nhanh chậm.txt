@@ -1,0 +1,98 @@
+//motor A
+int enA = 10;
+int in1 = 13;
+int in2 = 12;
+//motor B
+int enB = 9;
+int in3 = 11;
+int in4 = 8;
+// button
+int buttonup = 7;
+int buttondown = 4;
+int buttonleft = 6;
+int buttonright = 5; 
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode (enA,OUTPUT);
+  pinMode (in1,OUTPUT);
+  pinMode (in2,OUTPUT);
+  pinMode (enB,OUTPUT);
+  pinMode (in3,OUTPUT);
+  pinMode (in4,OUTPUT);
+  pinMode (buttonup,INPUT);
+  pinMode (buttondown,INPUT);
+  pinMode (buttonleft,INPUT);
+  pinMode (buttonright,INPUT);
+}
+void up()
+{
+  int val= analogRead (A0);
+  //motorA
+  digitalWrite(in1,HIGH);
+  digitalWrite(in2,LOW);
+  analogWrite(enA,val/4);
+  //motorB
+  digitalWrite(in3,HIGH);
+  digitalWrite(in4,LOW);
+  analogWrite(enB,val/4);
+}
+void down()
+{
+  int val= analogRead (A0);
+  //motorA
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,HIGH);
+  analogWrite(enA,val/4);
+  //motorB
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  analogWrite(enB,val/4);
+}
+void left()
+{
+  int val= analogRead (A0);
+  //motorA
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,HIGH);
+  analogWrite(enA,val/4);
+  //motorB
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  analogWrite(enB,val/4);
+  
+}
+void right()
+{
+  int val= analogRead (A0);
+  //motorA
+  digitalWrite(in1,HIGH);
+  digitalWrite(in2,LOW);
+  analogWrite(enA,val/4);
+  //motorB
+  digitalWrite(in3,HIGH);
+  digitalWrite(in4,LOW);
+  analogWrite(enB,val/4);
+}
+void stop ()
+{
+  digitalWrite ( in1, LOW );
+  digitalWrite ( in2, LOW );
+  digitalWrite ( in3, LOW );
+  digitalWrite ( in4, LOW );
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+  stop ();
+  if(digitalRead(buttonup)==0)
+  up();
+  if(digitalRead(buttondown)==0)
+  down();
+  if(digitalRead(buttonleft)==0)
+  left();
+  if(digitalRead(buttonright)==0)
+  right();
+  stop ();
+  
+
+}
